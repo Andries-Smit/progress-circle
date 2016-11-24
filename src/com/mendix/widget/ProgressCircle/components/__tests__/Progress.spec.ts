@@ -5,17 +5,17 @@ import * as progressbar from "progressbar.js";
 
 import { Progress, ProgressProps } from "../Progress";
 
-describe("Progress", () => {
-
+describe("ProgressCircle", () => {
+    let progressCircle: progressbar.Circle;
     const render = (props: ProgressProps) => shallow(createElement(Progress, props));
+    const Circle = progressbar.Circle;
     const spyOnCircle = () =>
         spyOn(progressbar, "Circle").and.callFake(() => {
-            return new Circle(document.createElement("div"), {
+            return progressCircle = new Circle(document.createElement("div"), {
                 strokeWidth: 6,
                 trailWidth: 6
             });
         });
-    const Circle = progressbar.Circle;
 
     it("renders the structure correctly", () => {
         const progress = render({ value: 60 });
@@ -91,6 +91,42 @@ describe("Progress", () => {
             const progress = render({ textSize: "large", value: 20 });
 
             expect(progress.find(".progress-circle-large").length).toBe(1);
+        });
+    });
+
+    describe("with a maximum value less than 1", () => {
+        it("renders a circle with text NA", () => {
+            spyOnCircle();
+
+            const progress = render({ animate: false, value: 80, maximumValue: -1 });
+            let instance = progress.instance() as Progress;
+            instance.componentDidMount();
+
+            expect(progressCircle.text.textContent).toBe("NA");
+        });
+    });
+
+    describe("with the value less than 0", () => {
+        it("renders a circle with text 0%", () => {
+            spyOnCircle();
+
+            const progress = render({ animate: false, value: -1 });
+            let instance = progress.instance() as Progress;
+            instance.componentDidMount();
+
+            expect(progressCircle.text.textContent).toBe("0%");
+        });
+    });
+
+    describe("with the value greater than the maximum", () => {
+        it("renders a circle with text 100%", () => {
+            spyOnCircle();
+
+            const progress = render({ animate: false, value: 180 });
+            let instance = progress.instance() as Progress;
+            instance.componentDidMount();
+
+            expect(progressCircle.text.textContent).toBe("100%");
         });
     });
 });

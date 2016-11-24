@@ -4,7 +4,7 @@ declare namespace progressbar {
     export class Circle {
         path: SVGPathElement;
         trail: SVGPathElement;
-        static _opts: CircleOptions;
+        text: HTMLDivElement;
 
         constructor(node: React.ReactNode, options?: CircleOptions);
 
