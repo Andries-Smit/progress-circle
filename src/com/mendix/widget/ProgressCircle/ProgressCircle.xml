@@ -28,10 +28,10 @@
                 <attributeType name="Decimal" />
             </attributeTypes>
         </property>
-        <property key="maximumValueAttribute" type="attribute" required="true">
+        <property key="maximumValueAttribute" type="attribute" required="false">
             <caption>Maximum value attribute</caption>
             <category>Data</category>
-            <description>Highest progress value. Shall be used to calculate the percentage</description>
+            <description>Highest progress value. If not set, maximum value defaults to 100</description>
             <attributeTypes>
                 <attributeType name="Integer" />
             </attributeTypes>
