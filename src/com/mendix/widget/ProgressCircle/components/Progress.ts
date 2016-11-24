@@ -24,11 +24,11 @@ export class Progress extends Component<ProgressProps, {}> {
     private progressCircle: Circle;
 
     componentDidMount() {
-        this.setProgress(this.props.value);
+        this.setProgress(this.props.value, this.props.maximumValue);
     }
 
     componentDidUpdate() {
-        this.setProgress(this.props.value);
+        this.setProgress(this.props.value, this.props.maximumValue);
     }
 
     render() {
@@ -52,15 +52,24 @@ export class Progress extends Component<ProgressProps, {}> {
         this.progressCircle.trail.className.baseVal = "widget-trail-path";
     }
 
-    private setProgress(value: number) {
-        const highest = this.props.maximumValue;
-        if (!this.progressCircle) { this.createProgressCircle(); }
-
-        if (value > highest) {
-            window.console.warn("The progress value is greater than the maximum value. Progress is set to 100%");
+    private setProgress(value: number, maximum: number) {
+        if (!this.progressCircle) {
+            this.createProgressCircle();
         }
-        const circleFraction = value > highest ? 1 : value / highest;
-        this.progressCircle.setText(Math.round(circleFraction * 100) + "%");
-        this.progressCircle.animate(circleFraction);
+        let progress: number;
+        if (maximum < 1) {
+            window.console.warn("The maximum value is less than one. Progress is set to NA");
+        } else if (value < 0) {
+            window.console.warn("The progress value is less than the zero. Progress is set to 0%");
+            progress = 0;
+        } else if (value > maximum) {
+            window.console.warn("The progress value is greater than the maximum value. Progress is set to 100%");
+            progress = 100;
+        } else {
+            progress = Math.round((value / maximum) * 100);
+        }
+
+        this.progressCircle.setText(progress > -1 ? progress + "%" : "NA");
+        this.progressCircle.animate(progress/100 || 0);
     }
 }
