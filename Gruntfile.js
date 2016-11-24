@@ -20,7 +20,6 @@ module.exports = function (grunt) {
                 "tasks": [ "copy:source" ]
             }
         },
-
         compress: {
             dist: {
                 options: {
@@ -36,7 +35,6 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
         copy: {
             distDeployment: {
                 files: [
@@ -54,11 +52,9 @@ module.exports = function (grunt) {
                 ]
             }
         },
-
         webpack: {
             renderer: webpackConfig
         },
-
         clean: {
             build: [
                 "./dist/" + pkg.version + "/" + pkg.name + "/*",

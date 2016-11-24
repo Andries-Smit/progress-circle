@@ -2,15 +2,17 @@
 Displays a circular progress bar.
 
 ## Features
-* Set the progress value based on an attribute
-* Set the maximum progress value based on an attribute
-* Animate on load
+* Shows the percentage (from 0 to 100) based on the progress value and the maximum progress value
+* Animates on load
 
 ## Dependencies
 Mendix 6.
 
 ## Demo project
 http://progresscircle.mxapps.io
+
+## Issues
+Please report issues at https://github.com/mendixlabs/progress-circle/issues.
 
 ## Disclaimer
 Status: In development

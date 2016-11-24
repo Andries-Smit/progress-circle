@@ -8,11 +8,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/edwinmp/ProgressCircle"
+    "url": "https://github.com/mendixlabs/progress-circle"
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/edwinmp/ProgressCircle/issues"
+    "url": "https://github.com/mendixlabs/progress-circle/issues"
   },
   "devDependencies": {
     "@types/big.js": "0.0.31",
