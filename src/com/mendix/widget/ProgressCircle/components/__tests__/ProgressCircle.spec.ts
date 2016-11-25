@@ -3,11 +3,11 @@ import { DOM, createElement } from "react";
 
 import * as progressbar from "progressbar.js";
 
-import { Progress, ProgressProps } from "../Progress";
+import { ProgressCircle, ProgressCircleProps } from "../ProgressCircle";
 
 describe("ProgressCircle", () => {
     let progressCircle: progressbar.Circle;
-    const render = (props: ProgressProps) => shallow(createElement(Progress, props));
+    const render = (props: ProgressCircleProps) => shallow(createElement(ProgressCircle, props));
     const Circle = progressbar.Circle;
     const spyOnCircle = () =>
         spyOn(progressbar, "Circle").and.callFake(() => {
@@ -26,7 +26,7 @@ describe("ProgressCircle", () => {
     it("creates a circle progress bar", () => {
         spyOnCircle();
         const progress = render({ value: 80 });
-        let instance = progress.instance() as Progress;
+        let instance = progress.instance() as ProgressCircle;
         instance.componentDidMount();
 
         expect(progressbar.Circle).toHaveBeenCalled();
@@ -38,7 +38,7 @@ describe("ProgressCircle", () => {
         spyOnCircle();
 
         const progress = render({ animate: false, value: 80 });
-        let instance = progress.instance() as Progress;
+        let instance = progress.instance() as ProgressCircle;
         instance.componentDidMount();
 
         expect(setText).toHaveBeenCalled();
@@ -50,7 +50,7 @@ describe("ProgressCircle", () => {
         spyOnCircle();
 
         const progress = render({ value: 80 });
-        let instance = progress.instance() as Progress;
+        let instance = progress.instance() as ProgressCircle;
         instance.componentDidMount();
         instance.componentDidUpdate();
 
@@ -63,7 +63,7 @@ describe("ProgressCircle", () => {
         spyOnCircle();
 
         const progress = render({ value: 280 });
-        let instance = progress.instance() as Progress;
+        let instance = progress.instance() as ProgressCircle;
         instance.componentDidMount();
         instance.componentWillUnmount();
 
@@ -99,7 +99,7 @@ describe("ProgressCircle", () => {
             spyOnCircle();
 
             const progress = render({ animate: false, value: 80, maximumValue: -1 });
-            let instance = progress.instance() as Progress;
+            let instance = progress.instance() as ProgressCircle;
             instance.componentDidMount();
 
             expect(progressCircle.text.textContent).toBe("NA");
@@ -111,7 +111,7 @@ describe("ProgressCircle", () => {
             spyOnCircle();
 
             const progress = render({ animate: false, value: -1 });
-            let instance = progress.instance() as Progress;
+            let instance = progress.instance() as ProgressCircle;
             instance.componentDidMount();
 
             expect(progressCircle.text.textContent).toBe("0%");
@@ -123,7 +123,7 @@ describe("ProgressCircle", () => {
             spyOnCircle();
 
             const progress = render({ animate: false, value: 180 });
-            let instance = progress.instance() as Progress;
+            let instance = progress.instance() as ProgressCircle;
             instance.componentDidMount();
 
             expect(progressCircle.text.textContent).toBe("100%");

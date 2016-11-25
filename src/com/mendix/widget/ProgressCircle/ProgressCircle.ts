@@ -1,7 +1,7 @@
 import * as dojoDeclare from "dojo/_base/declare";
 import * as WidgetBase from "mxui/widget/_WidgetBase";
 
-import { Progress, ProgressTextSize } from "./components/Progress";
+import { ProgressCircle as Circle, ProgressTextSize } from "./components/ProgressCircle";
 import { createElement } from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 
@@ -24,7 +24,7 @@ class ProgressCircle extends WidgetBase {
 
     updateRendering() {
         if (this.contextObject) {
-            render(createElement(Progress, {
+            render(createElement(Circle, {
                 animate: this.animate,
                 maximumValue: Number(this.contextObject.get(this.maximumValueAttribute)),
                 textSize: this.textSize,

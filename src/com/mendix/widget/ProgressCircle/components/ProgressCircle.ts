@@ -4,7 +4,7 @@ import { Component, DOM, ReactNode } from "react";
 
 import "../ui/ProgressCircle.css";
 
-export interface ProgressProps {
+export interface ProgressCircleProps {
     value: number;
     maximumValue?: number;
     textSize?: ProgressTextSize;
@@ -13,8 +13,8 @@ export interface ProgressProps {
 
 export type ProgressTextSize = "small" | "medium" | "large";
 
-export class Progress extends Component<ProgressProps, {}> {
-    static defaultProps: ProgressProps = {
+export class ProgressCircle extends Component<ProgressCircleProps, {}> {
+    static defaultProps: ProgressCircleProps = {
         animate: true,
         maximumValue: 100,
         textSize: "medium",
